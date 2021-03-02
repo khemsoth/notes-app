@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul>
-      <li is="Note" v-for="note in notes" :key="note.id" :title="note.title" :desc="note.desc">
+      <li is="Note" v-for="(note, index) in notes" :key="note.id" :title="note.title" :desc="note.desc" v-on:delete-note="deleteNote(index)">
       </li>
     </ul>
   </div>
@@ -36,6 +36,11 @@ export default {
       this.notes.push(n)
     }
   },
+  methods: {
+    deleteNote(index) {
+      this.notes.splice(index, 1)
+    }
+  }
 }
 </script>
 

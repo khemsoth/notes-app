@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import { v4 as uuidv4 } from 'uuid'
 export default {
   name: 'CreateNote',
   data() {
@@ -26,6 +27,7 @@ export default {
   methods: {
     addNote(newNote) {
       newNote = {
+        id: uuidv4(),
         title: this.title,
         desc: this.desc
       }
