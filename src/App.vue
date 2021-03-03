@@ -1,28 +1,36 @@
 <template>
   <div id="app">
     <CreateNote v-on:add-note="addNote"/>
-    <NoteList :newNote="newNote"/>
+    <NoteList :newNote="newNote" v-on:edit-note="editNote" />
+    <EditNote :class="{ active: isActive }"/>
+
   </div>
 </template>
 
 <script>
 import NoteList from './components/NoteList'
 import CreateNote from './components/CreateNote'
+import EditNote from './components/EditNote'
 
 export default {
   name: 'App',
   components: {
     NoteList,
-    CreateNote
+    CreateNote,
+    EditNote
   },
   data() {
     return {
-      newNote: {}
+      newNote: {},
+      isActive: false
     }
   },
   methods: {
     addNote(newNote) {
       this.newNote = newNote
+    },
+    editNote(oldNote) {
+      this.isActive = !this.isActive
     }
   },  
 }
@@ -37,4 +45,9 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+.active {
+  background-color: red;
+}
+
 </style>

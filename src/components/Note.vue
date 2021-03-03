@@ -13,15 +13,19 @@ export default {
   props: ['title', 'desc'],
   data() {
     return {
+      oldTitle: '',
+      oldDesc: ''
     }
   },
   methods: {
-    editNote(note) {
-      note = {
-        title: this.title,
-        desc: this.desc
+    editNote(oldNote) {
+      this.oldTitle = this.title
+      this.oldDesc = this.desc
+      oldNote = {
+        oldTitle: this.oldTitle,
+        oldDesc: this.oldDesc
       }
-      console.log(note)
+      this.$emit('edit-note', oldNote)
     },
     deleteNote() {
       this.$emit('delete-note')

@@ -1,24 +1,35 @@
 <template>
   <div>
     <ul>
-      <li is="Note" v-for="(note, index) in notes" :key="note.id" :title="note.title" :desc="note.desc" v-on:delete-note="deleteNote(index)">
+      <li is="Note" v-for="(note, index) in notes" 
+      :key="note.id" 
+      :title="note.title" 
+      :desc="note.desc" 
+      v-on:delete-note="deleteNote(index)"
+      v-on:edit-note="editNote"
+      >
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+
 import Note from './Note'
+import EditNote from './EditNote'
+
 export default {
   name: 'NoteList',
   props: {
-    newNote: Object
+    newNote: Object,
   },
   components: {
-    Note
+    Note,
+    EditNote
   },
   data() {
     return {
+      oldNote: {},
       notes: [
         {
           title: 'test',
@@ -28,7 +39,8 @@ export default {
           title: 'test2',
           desc: 'another test 2'
         }
-      ]
+      ],
+      editVisible: false
     }
   },
   watch: {
@@ -39,6 +51,14 @@ export default {
   methods: {
     deleteNote(index) {
       this.notes.splice(index, 1)
+    },
+    editNote(oldNote) {
+      this.oldNote = {
+        noteTitle: oldNote.oldTitle,
+        noteDesc: oldNote.oldDesc
+      }
+      this.editVisible = !this.editVisible
+      this.$emit('edit-note', this.oldNote)
     }
   }
 }
