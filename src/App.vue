@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <CreateNote v-on:add-note="addNote"/>
-    <NoteList :newNote="newNote" v-on:edit-note="editNote" />
-    <EditNote :class="{ active: isActive }"/>
+    <NoteList :newNote="newNote" :updatedNote="updatedNote" v-on:edit-note="editNote" />
+    <EditNote :oldNote="oldNote" :class="{ active: isActive }" v-on:update-note="updateNote" />
 
   </div>
 </template>
@@ -22,6 +22,8 @@ export default {
   data() {
     return {
       newNote: {},
+      oldNote: {},
+      updatedNote: {},
       isActive: false
     }
   },
@@ -31,6 +33,10 @@ export default {
     },
     editNote(oldNote) {
       this.isActive = !this.isActive
+      this.oldNote = oldNote
+    },
+    updateNote(updatedNote) {
+      this.updatedNote = updatedNote
     }
   },  
 }

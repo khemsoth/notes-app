@@ -3,11 +3,11 @@
     <form>
       <div>
         <label for="title">Title: </label>
-        <input type="text" v-model="oldTitle">
+        <input type="text" v-model="title">
       </div>
       <div>
         <label for="desc">Note: </label>
-        <input type="text" v-model="oldDesc">
+        <input type="text" v-model="desc">
       </div>
       <input type="button" value="Update Note" v-on:click="updateNote">
     </form>
@@ -18,20 +18,26 @@
 
 export default {
   name: 'EditNote',
-  props: ['title', 'desc'],
+  props: ['oldNote'],
   data() {
     return {
-      oldTitle: '',
-      oldDesc: ''
+      title: '',
+      desc: ''
+    }
+  },
+  watch: {
+    oldNote: function(note) {
+      this.title = note.noteTitle
+      this.desc = note.noteDesc
     }
   },
   methods: {
-    updateNote(oldNote) {
-      note = {
-        oldTitle: this.oldTitle,
-        oldDesc: this.oldDesc
+    updateNote(updatedNote) {
+      updatedNote = {
+        updatedTitle: this.title,
+        updatedDesc: this.desc
       }
-      this.$emit('edit-note', oldNote)
+      this.$emit('update-note', updatedNote)
     }
   }
 }

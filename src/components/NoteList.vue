@@ -3,8 +3,8 @@
     <ul>
       <li is="Note" v-for="(note, index) in notes" 
       :key="note.id" 
-      :title="note.title" 
-      :desc="note.desc" 
+      :title="note.title"
+      :desc="note.desc"
       v-on:delete-note="deleteNote(index)"
       v-on:edit-note="editNote"
       >
@@ -22,6 +22,7 @@ export default {
   name: 'NoteList',
   props: {
     newNote: Object,
+    updatedNote: Object,
   },
   components: {
     Note,
@@ -46,6 +47,14 @@ export default {
   watch: {
     newNote(n) {
       this.notes.push(n)
+    },
+    updatedNote(u) {
+      let i = this.notes.findIndex((obj => obj.title == u.updatedTitle))
+      this.notes[i] = {
+        title: u.updatedTitle,
+        desc: u.updatedDesc
+      }
+      this.$forceUpdate()
     }
   },
   methods: {

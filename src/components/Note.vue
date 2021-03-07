@@ -10,11 +10,14 @@
 <script>
 export default {
   name: 'Note',
-  props: ['title', 'desc'],
+  props: {
+    title: String,
+    desc: String,
+  },
   data() {
     return {
       oldTitle: '',
-      oldDesc: ''
+      oldDesc: '',
     }
   },
   methods: {
