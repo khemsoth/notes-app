@@ -21,12 +21,14 @@ export default {
   props: ['oldNote'],
   data() {
     return {
+      id: null,
       title: '',
       desc: ''
     }
   },
   watch: {
     oldNote: function(note) {
+      this.id = note.noteID
       this.title = note.noteTitle
       this.desc = note.noteDesc
     }
@@ -34,6 +36,7 @@ export default {
   methods: {
     updateNote(updatedNote) {
       updatedNote = {
+        id: this.id,
         updatedTitle: this.title,
         updatedDesc: this.desc
       }

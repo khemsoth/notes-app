@@ -3,6 +3,7 @@
     <ul>
       <li is="Note" v-for="(note, index) in notes" 
       :key="note.id" 
+      :id="note.id"
       :title="note.title"
       :desc="note.desc"
       v-on:delete-note="deleteNote(index)"
@@ -33,10 +34,12 @@ export default {
       oldNote: {},
       notes: [
         {
+          id: '1',
           title: 'test',
           desc: 'another test'
         },
         {
+          id: '2',
           title: 'test2',
           desc: 'another test 2'
         }
@@ -49,8 +52,9 @@ export default {
       this.notes.push(n)
     },
     updatedNote(u) {
-      let i = this.notes.findIndex((obj => obj.title == u.updatedTitle))
+      let i = this.notes.findIndex((obj => obj.id == u.id))
       this.notes[i] = {
+        id: u.id,
         title: u.updatedTitle,
         desc: u.updatedDesc
       }
@@ -63,6 +67,7 @@ export default {
     },
     editNote(oldNote) {
       this.oldNote = {
+        noteID: oldNote.oldID,
         noteTitle: oldNote.oldTitle,
         noteDesc: oldNote.oldDesc
       }

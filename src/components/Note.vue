@@ -13,18 +13,22 @@ export default {
   props: {
     title: String,
     desc: String,
+    id: String
   },
   data() {
     return {
+      oldID: null,
       oldTitle: '',
       oldDesc: '',
     }
   },
   methods: {
     editNote(oldNote) {
+      this.oldID = this.id
       this.oldTitle = this.title
       this.oldDesc = this.desc
       oldNote = {
+        oldID: this.oldID,
         oldTitle: this.oldTitle,
         oldDesc: this.oldDesc
       }

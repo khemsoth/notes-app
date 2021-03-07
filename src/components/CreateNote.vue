@@ -20,6 +20,7 @@ export default {
   name: 'CreateNote',
   data() {
     return {
+      id: null,
       title: '',
       desc: ''
     }
@@ -32,6 +33,7 @@ export default {
         desc: this.desc
       }
       this.$emit('add-note', newNote)
+      this.id = null
       this.title = '',
       this.desc = ''
     }
