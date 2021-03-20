@@ -41,6 +41,9 @@ export default {
         updatedDesc: this.desc
       }
       this.$emit('update-note', updatedNote)
+      this.id = null,
+      this.title = '', 
+      this.desc = ''
     }
   }
 }

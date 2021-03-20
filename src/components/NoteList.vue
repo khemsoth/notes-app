@@ -11,11 +11,11 @@
       >
       </li>
     </ul>
+    <input type="button" value="Clear all" v-on:click="clearAll">
   </div>
 </template>
 
 <script>
-
 import Note from './Note'
 import EditNote from './EditNote'
 
@@ -32,19 +32,20 @@ export default {
   data() {
     return {
       oldNote: {},
-      notes: [
-        {
-          id: '1',
-          title: 'test',
-          desc: 'another test'
-        },
-        {
-          id: '2',
-          title: 'test2',
-          desc: 'another test 2'
-        }
-      ],
+      notes: [],
       editVisible: false
+    }
+  },
+  created() {
+    let noteCheck = JSON.parse(localStorage.getItem('notes'))
+    if(!noteCheck) {
+      let noteList = []
+      localStorage.setItem('notes', JSON.stringify(noteList))
+    } else {
+      let noteList = JSON.parse(localStorage.getItem('notes'))
+      for(var i = 0; i < noteList.length; i++) {
+        this.notes.push(noteList[i])
+      }
     }
   },
   watch: {
@@ -59,11 +60,15 @@ export default {
         desc: u.updatedDesc
       }
       this.$forceUpdate()
+      let newList = this.notes
+      localStorage.setItem('notes', JSON.stringify(newList))
     }
   },
   methods: {
     deleteNote(index) {
       this.notes.splice(index, 1)
+      let newList = this.notes
+      localStorage.setItem('notes', JSON.stringify(newList))
     },
     editNote(oldNote) {
       this.oldNote = {
@@ -73,6 +78,16 @@ export default {
       }
       this.editVisible = !this.editVisible
       this.$emit('edit-note', this.oldNote)
+    },
+    clearAll() {
+      
+      localStorage.clear()
+      this.notes = []
+      /*
+     let x = JSON.parse(localStorage.getItem('notes'))
+     let i = x.findIndex(el => el.id = "60317d21-9d2b-4892-95b5-f5e0baf9e2f5")
+     console.log(i)
+     */
     }
   }
 }

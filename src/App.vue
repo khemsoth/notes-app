@@ -8,6 +8,7 @@
 </template>
 
 <script>
+const ls = require('local-storage')
 import NoteList from './components/NoteList'
 import CreateNote from './components/CreateNote'
 import EditNote from './components/EditNote'
@@ -30,6 +31,14 @@ export default {
   methods: {
     addNote(newNote) {
       this.newNote = newNote
+      let note = {
+        id: newNote.id,
+        title: newNote.title,
+        desc: newNote.desc
+      }
+      let noteList = JSON.parse(localStorage.getItem('notes'))
+      noteList.push(note)
+      localStorage.setItem('notes', JSON.stringify(noteList))
     },
     editNote(oldNote) {
       this.isActive = !this.isActive

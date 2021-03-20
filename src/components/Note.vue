@@ -33,6 +33,9 @@ export default {
         oldDesc: this.oldDesc
       }
       this.$emit('edit-note', oldNote)
+     let x = JSON.parse(localStorage.getItem('notes'))
+     let i = x.findIndex(el => console.log(el.id))
+     
     },
     deleteNote() {
       this.$emit('delete-note')
