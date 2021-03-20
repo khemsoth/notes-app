@@ -1,24 +1,27 @@
 <template>
   <div id="app">
-    <CreateNote v-on:add-note="addNote"/>
-    <NoteList :newNote="newNote" :updatedNote="updatedNote" v-on:edit-note="editNote" />
-    <EditNote :oldNote="oldNote" :class="{ active: isActive }" v-on:update-note="updateNote" />
-
+    <Header />
+    <main class="main">
+      <CreateNote v-on:add-note="addNote"/>
+      <NoteList :newNote="newNote" :updatedNote="updatedNote" v-on:edit-note="editNote" />
+      <!--<EditNote :oldNote="oldNote" :class="{ active: isActive }" v-on:update-note="updateNote" />-->
+    </main>
   </div>
 </template>
 
 <script>
-const ls = require('local-storage')
 import NoteList from './components/NoteList'
 import CreateNote from './components/CreateNote'
 import EditNote from './components/EditNote'
+import Header from './components/Header'
 
 export default {
   name: 'App',
   components: {
     NoteList,
     CreateNote,
-    EditNote
+    EditNote,
+    Header
   },
   data() {
     return {
@@ -52,17 +55,62 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  body {
+    background-color: #98d2eb;
+    margin: 0;
+    height: 100vh;
+  }
 
-.active {
-  background-color: red;
-}
+  main {
+    margin-top: 4rem;
+  }
+
+  .btn {
+    background-color: #77625c;
+    color: #ffffff; 
+    border-color: #77625c;
+    border-radius: .5rem;
+    padding: 1rem;
+    width: 10rem;
+  }
+
+  .btn:hover {
+    background-color: #e1f2fe;
+    border-color: #77625c;
+    color: #77625c;
+    cursor: pointer;
+  }
+
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+  }
+
+  @media (min-width: 320px) {
+
+  }
+
+  @media (min-width: 480px) {
+    
+  }
+
+  @media (min-width: 600px) {
+    
+  }
+
+  @media (min-width: 801px) {
+    
+  }
+
+ @media (min-width: 1025px) {
+    
+  }
+
+ @media (min-width: 1281px) {
+    
+  }
 
 </style>

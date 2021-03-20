@@ -1,7 +1,9 @@
 <template>
   <div>
-    <ul>
-      <li is="Note" v-for="(note, index) in notes" 
+    <ul class="note-list">
+      <li
+      is="Note" 
+      v-for="(note, index) in notes" 
       :key="note.id" 
       :id="note.id"
       :title="note.title"
@@ -11,7 +13,7 @@
       >
       </li>
     </ul>
-    <input type="button" value="Clear all" v-on:click="clearAll">
+    <input class="btn clear-btn" type="button" value="Clear all" v-on:click="clearAll">
   </div>
 </template>
 
@@ -93,6 +95,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+  .note-list {
+    padding: 0;
+  }
 
+  .clear-btn {
+    margin-top: 5rem;
+  }
 </style>

@@ -1,15 +1,15 @@
 <template>
   <div>
     <form>
-      <div>
+      <div class="create-note-input">
         <label for="title">Title: </label>
         <input type="text" v-model="title">
       </div>
-      <div>
+      <div class="create-note-input">
         <label for="desc">Note: </label>
         <input type="text" v-model="desc">
       </div>
-      <input type="button" value="Add Note" v-on:click="addNote">
+      <input class="btn add-note-btn" type="button" value="Add Note" v-on:click="addNote">
     </form>
   </div>
 </template>
@@ -41,6 +41,17 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+  .create-note-input {
+    margin: .5rem auto;
+    width: 70vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .add-note-btn {
+    margin-top: 2rem;
+  }
 
 </style>

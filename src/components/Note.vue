@@ -1,9 +1,11 @@
 <template>
-  <div>
+  <div class="note">
     <h3>{{ title }}</h3>
     <p>{{ desc }}</p>
-    <input type="button" value="Edit" v-on:click="editNote">
-    <input type="button" value="Delete" v-on:click="deleteNote">
+    <div class="btn-cont">
+      <input class="btn note-btn" type="button" value="Edit" v-on:click="editNote">
+      <input class="btn note-btn" type="button" value="Delete" v-on:click="deleteNote">
+    </div>
   </div>
 </template>
 
@@ -44,6 +46,21 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+  .note {
+    width: 80%;
+    margin: 0 auto;
+  }
 
+  .note-btn {
+    width: 40%;
+    height: 2rem;
+    padding: 0;
+  }
+
+  .btn-cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 </style>
