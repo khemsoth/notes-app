@@ -1,11 +1,13 @@
 <template>
   <div id="app">
-    <Header />
-    <main class="main">
+    <Header :class="{ unfocus: isActive }"/>
+    <main class="main" :class="{ unfocus: isActive }">
       <CreateNote v-on:add-note="addNote"/>
       <NoteList :newNote="newNote" :updatedNote="updatedNote" v-on:edit-note="editNote" />
-      <!--<EditNote :oldNote="oldNote" :class="{ active: isActive }" v-on:update-note="updateNote" />-->
     </main>
+    <div :class="{ modalCont: isActive }">
+      <EditNote class="edit-note" :oldNote="oldNote" :class="{ active: isActive }" v-on:update-note="updateNote" v-on:cancel-update="cancelUpdate" />
+    </div>
   </div>
 </template>
 
@@ -31,6 +33,11 @@ export default {
       isActive: false
     }
   },
+  watch: {
+    isActive() {
+      document.body.style.overflow = this.isActive ? 'hidden' : ''
+    }
+  },
   methods: {
     addNote(newNote) {
       this.newNote = newNote
@@ -44,11 +51,15 @@ export default {
       localStorage.setItem('notes', JSON.stringify(noteList))
     },
     editNote(oldNote) {
-      this.isActive = !this.isActive
+      this.isActive = true
       this.oldNote = oldNote
     },
     updateNote(updatedNote) {
       this.updatedNote = updatedNote
+      this.isActive = false
+    },
+    cancelUpdate() {
+      this.isActive = false
     }
   },  
 }
@@ -59,10 +70,16 @@ export default {
     background-color: #98d2eb;
     margin: 0;
     height: 100vh;
+    color: #49392c;
   }
 
   main {
     margin-top: 4rem;
+  }
+
+  .unfocus {
+    opacity: .5;
+    overflow: hidden;
   }
 
   .btn {
@@ -81,12 +98,36 @@ export default {
     cursor: pointer;
   }
 
+  .edit-note {
+    display: none;
+    z-index: 5;
+    justify-content: center;
+    background-color: rgba(255, 255, 255,  .9);
+    width: 80vw;
+    height: 40vh;
+  }
+
+  .active {
+    display: block;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+  }
+
+  .modal-cont {
+    height: 100vh;
+    overflow-y: hidden;
+  }
+
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #2c3e50;
+    display: flex;
+    flex-direction: column;
   }
 
   @media (min-width: 320px) {

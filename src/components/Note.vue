@@ -49,7 +49,10 @@ export default {
 <style scoped>
   .note {
     width: 80%;
-    margin: 0 auto;
+    margin: 2rem auto;
+    background-color: rgba(255, 255, 255, .8);
+    padding: .5rem;
+    border-radius: 1rem;
   }
 
   .note-btn {

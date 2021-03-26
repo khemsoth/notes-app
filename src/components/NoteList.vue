@@ -101,6 +101,6 @@ export default {
   }
 
   .clear-btn {
-    margin-top: 5rem;
+    margin: 5rem 0;
   }
 </style>

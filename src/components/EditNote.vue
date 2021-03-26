@@ -1,15 +1,18 @@
 <template>
   <div>
+    <h1>Edit Note</h1>
     <form>
-      <div>
+      <div class="edit-note-field">
         <label for="title">Title: </label>
         <input type="text" v-model="title">
       </div>
-      <div>
+      <div class="edit-note-field">
         <label for="desc">Note: </label>
         <input type="text" v-model="desc">
       </div>
-      <input type="button" value="Update Note" v-on:click="updateNote">
+      <input class="btn update-btn" type="button" value="Update Note" v-on:click="updateNote">
+      <input class="btn update-btn" type="button" value="Cancel" v-on:click="cancelUpdate">
+
     </form>
   </div>
 </template>
@@ -44,11 +47,21 @@ export default {
       this.id = null,
       this.title = '', 
       this.desc = ''
+    },
+    cancelUpdate() {
+      this.$emit('cancel-update')
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
+  .edit-note-field {
+    margin: 1rem 0;
+  }
+
+  .update-btn {
+    margin: 1rem;
+  }
 
 </style>
