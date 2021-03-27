@@ -20,6 +20,7 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    font-size: 1.5rem;
   }
 
   .header-title {

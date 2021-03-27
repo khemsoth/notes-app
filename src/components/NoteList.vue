@@ -103,4 +103,11 @@ export default {
   .clear-btn {
     margin: 5rem 0;
   }
+
+  @media (min-width: 600px) {
+    .note-list {
+      width: 60vw;
+      margin: 0 auto;
+    }
+  }
 </style>

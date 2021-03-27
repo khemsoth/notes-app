@@ -66,11 +66,13 @@ export default {
 </script>
 
 <style>
+
   body {
     background-color: #98d2eb;
     margin: 0;
     height: 100vh;
     color: #49392c;
+    overflow-x: hidden;
   }
 
   main {
@@ -80,6 +82,7 @@ export default {
   .unfocus {
     opacity: .5;
     overflow: hidden;
+    pointer-events: none;
   }
 
   .btn {
@@ -104,7 +107,6 @@ export default {
     justify-content: center;
     background-color: rgba(255, 255, 255,  .9);
     width: 80vw;
-    height: 40vh;
   }
 
   .active {
@@ -114,6 +116,7 @@ export default {
     top: 50%;
     transform: translate(-50%, -50%);
     overflow: hidden;
+    
   }
 
   .modal-cont {
