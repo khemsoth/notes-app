@@ -8,6 +8,8 @@
     <div :class="{ modalCont: isActive }">
       <EditNote class="edit-note" :oldNote="oldNote" :class="{ active: isActive }" v-on:update-note="updateNote" v-on:cancel-update="cancelUpdate" />
     </div>
+    <p class="icon">Icon by <a href="https://freeicons.io/profile/730">anumithun</a> on <a href="https://freeicons.io">freeicons.io</a>
+    </p>
   </div>
 </template>
 
@@ -122,6 +124,13 @@ export default {
   .modal-cont {
     height: 100vh;
     overflow-y: hidden;
+  }
+
+  .icon {
+    font-size: .7rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
   }
 
   #app {
